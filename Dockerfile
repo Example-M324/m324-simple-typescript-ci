@@ -7,12 +7,14 @@ WORKDIR /app
 COPY package*.json ./
 RUN yarn install
 
+# Copy app source
+COPY . .
+
 # CI in Image Build Process
 RUN yarn lint
 RUN yarn test
 
 # Build
-COPY . .
 RUN yarn build
 
 EXPOSE 3000
